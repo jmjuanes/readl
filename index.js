@@ -38,7 +38,7 @@ module.exports = function(file, opt, callback)
 
   //Check for no options
   if(typeof opt === 'undefined'){ return new Error('Undefined callback function'); }
-  
+
   //Check the options
   if(typeof opt === 'function'){ var callback = opt; opt = {}; }
 
@@ -50,6 +50,9 @@ module.exports = function(file, opt, callback)
 
   //Check the empty line option
   if(typeof opt.emptyLines === 'undefined'){ opt.emptyLines = true; }
+
+  //Check for no options
+  if(typeof callback === 'undefined'){ return new Error('Undefined callback function'); }
 
   //Open the file
   var fd = fs.openSync(file, 'r');
