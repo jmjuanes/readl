@@ -35,6 +35,9 @@ module.exports = function(file, opt, callback)
 {
   //Check the file
   if(typeof file !== 'string'){ return new Error('Undefined file name'); }
+
+  //Check for no options
+  if(typeof opt === 'undefined'){ return new Error('Undefined callback function'); }
   
   //Check the options
   if(typeof opt === 'function'){ var callback = opt; opt = {}; }
