@@ -33,6 +33,9 @@ function readl(fd, position)
 //Exports to node
 module.exports = function(file, opt, callback)
 {
+  //Check the file
+  if(typeof file !== 'string'){ return new Error('Undefined file name'); }
+  
   //Check the options
   if(typeof opt === 'function'){ var callback = opt; opt = {}; }
 
@@ -43,7 +46,7 @@ module.exports = function(file, opt, callback)
   if(typeof opt.encoding === 'undefined'){ opt.encoding = 'utf8'; }
 
   //Check the empty line option
-  if(typeof opt.emptyLines === 'undefined'){ opt.emptyLines = true; } 
+  if(typeof opt.emptyLines === 'undefined'){ opt.emptyLines = true; }
 
   //Open the file
   var fd = fs.openSync(file, 'r');
