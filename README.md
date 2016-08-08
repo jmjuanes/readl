@@ -26,7 +26,7 @@ var content = '';
 readl('file.txt', { encoding: 'utf8' }, function(line)
 {
   //Save the file content
-  content = content + line;
+  content = content + line + '\n';
 });
 
 //Show the file content
@@ -55,8 +55,9 @@ An `object` with the following options:
 A `function` that will be executed one time for each read line on the file. This function will pass the following arguments:
 
 - `line`: a `string` with the read line.
-- `index`: an `integer` with the line number.
+- `index`: an `integer` with the line number. The line counter starts in 1.
 
+You can break the loop at a particular line by making the callback function return `false`. 
 
 ## License
 
