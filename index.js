@@ -9,7 +9,7 @@ var readChunk = 1024;
 var endl = 0x0a;
 
 //Read line from file
-function readl(fd, position)
+function readl(fd, start)
 {
   //Create the buffer
   var buff = new Buffer(readChunk);
@@ -55,7 +55,7 @@ module.exports = function(file, opt, callback)
   if(typeof callback === 'undefined'){ return new Error('Undefined callback function'); }
 
   //Check if file exists
-  if(pstat.isFileSync(file) === false){ return new Error('File not found'); } 
+  if(pstat.isFileSync(file) === false){ return new Error('File not found'); }
 
   //Open the file
   var fd = fs.openSync(file, 'r');
