@@ -78,6 +78,12 @@ module.exports = function(file, opt, callback)
     //Convert the line to utf8
     line = line.toString(opt.encoding);
 
+    //Increment the line counter
+    count = count + 1;
+
+    //Increment the position
+    position = position + line.length + 1;
+
     //Check for empty line
     if(line.replace(/\s/g, '') === '' && opt.emptyLines === false){ continue; }
 
@@ -89,12 +95,6 @@ module.exports = function(file, opt, callback)
 
     //Check for breaking the loop
     if(next === false){ break; }
-
-    //Increment the line counter
-    count = count + 1;
-
-    //Increment the position
-    position = position + line.length + 1;
   }
 
   //Exit
