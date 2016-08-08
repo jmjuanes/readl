@@ -54,6 +54,9 @@ module.exports = function(file, opt, callback)
   //Check for no options
   if(typeof callback === 'undefined'){ return new Error('Undefined callback function'); }
 
+  //Check if file exists
+  if(pstat.isFileSync(file) === false){ return new Error('File not found'); } 
+
   //Open the file
   var fd = fs.openSync(file, 'r');
 
