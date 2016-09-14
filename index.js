@@ -100,3 +100,9 @@ module.exports = function(file, opt, callback)
   //Exit
   return;
 };
+
+//Set the read chunk
+module.exports.setChunk = function(value){ readChunk = value; };
+
+//Set the end line character
+module.exports.setEndl = function(value){ endl = value; };
