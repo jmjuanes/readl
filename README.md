@@ -57,7 +57,15 @@ A `function` that will be executed one time for each read line on the file. This
 - `line`: a `string` with the read line.
 - `index`: an `integer` with the line number. The line counter starts in 1.
 
-You can break the loop at a particular line by making the callback function return `false`. 
+You can break the loop at a particular line by making the callback function return `false`.  
+
+### readl.setChunk(value)
+
+Set the default chunk size. Default is 1024. 
+
+## readl.setEndl(value)
+
+Set the default end-line character. Default is `0x0a`
 
 ## License
 
