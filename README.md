@@ -63,7 +63,7 @@ You can break the loop at a particular line by making the callback function retu
 
 Set the default chunk size. Default is 1024. 
 
-## readl.setEndl(value)
+### readl.setEndl(value)
 
 Set the default end-line character. Default is `0x0a`
 
