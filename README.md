@@ -23,7 +23,7 @@ var readl = require('readl');
 var content = '';
 
 //Read the file
-readl('file.txt', { encoding: 'utf8' }, function(line)
+readl('file.txt', { encoding: 'utf8', start: 0 }, function(line)
 {
   //Save the file content
   content = content + line + '\n';
@@ -49,6 +49,7 @@ An `object` with the following options:
 
 - `encoding`: set the encoding. Default: `utf8`.
 - `emptyLines`: set it to `false` if you want to omit the empty lines. Default: `true`.
+- `start`: start position. Default is 0.
 
 ##### callback
 
@@ -61,7 +62,7 @@ You can break the loop at a particular line by making the callback function retu
 
 ### readl.setChunk(value)
 
-Set the default chunk size. Default is 1024. 
+Set the default chunk size. Default is 1024.
 
 ### readl.setEndl(value)
 
