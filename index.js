@@ -51,6 +51,9 @@ module.exports = function(file, opt, callback)
   //Check the empty line option
   if(typeof opt.emptyLines === 'undefined'){ opt.emptyLines = true; }
 
+  //Check the start option
+  if(typeof opt.start === 'undefined'){ opt.start = 0; }
+
   //Check for no options
   if(typeof callback === 'undefined'){ return new Error('Undefined callback function'); }
 
@@ -61,7 +64,7 @@ module.exports = function(file, opt, callback)
   var fd = fs.openSync(file, 'r');
 
   //Actual position
-  var position = 0;
+  var position = opt.start;
 
   //Line count
   var count = 0;
