@@ -21,10 +21,14 @@ function readl(fd, start)
   //Check the length
   if(bytesRead === 0){ return false; }
 
+  //Compare with the chunk size
+  //if(bytesRead < readChunk){ buff = buff.slice(0, bytesRead); }
+
   //Get the line end
   var index = buff.indexOf(endl);
 
   //Slice the buffer
+  //buff = (index !== -1) ? buff.slice(0, index) : buff;
   buff = (index === -1) ? buff.slice(0, bytesRead) : buff.slice(0, index);
 
   //Return the buffer
@@ -86,7 +90,7 @@ module.exports = function(file, opt, callback)
     count = count + 1;
 
     //Save the start position
-    var position_start = positon;
+    var position_start = position;
 
     //Save the end position
     var position_end = position + line.length + 1;
@@ -95,7 +99,7 @@ module.exports = function(file, opt, callback)
     if(line_str.replace(/\s/g, '') === '' && opt.emptyLines === false){ continue; }
 
     //Do the callback
-    var next = callback(line_start, count, position_start, position_end, line.length);
+    var next = callback(line_str, count, position_start, position_end, line.length);
 
     //Check the next
     if(typeof next === 'undefined'){ var next = true; }
