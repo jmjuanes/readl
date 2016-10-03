@@ -107,6 +107,9 @@ module.exports = function(file, opt, callback)
     position = position_end;
   }
 
+  //Close the file
+  fs.closeSync(fd);
+
   //Exit
   return;
 };
