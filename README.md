@@ -57,6 +57,9 @@ A `function` that will be executed one time for each read line on the file. This
 
 - `line`: a `string` with the read line.
 - `index`: an `integer` with the line number. The line counter starts in 1.
+- `position_start`: an `integer` with the start position in the buffer.
+- `position_end`: an `integer` with the end position in the buffer.
+- `length`: an `integer` with the number of bytes read.
 
 You can break the loop at a particular line by making the callback function return `false`.  
 
