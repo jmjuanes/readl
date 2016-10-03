@@ -22,14 +22,13 @@ function readl(fd, start)
   if(bytesRead === 0){ return false; }
 
   //Compare with the chunk size
-  //if(bytesRead < readChunk){ buff = buff.slice(0, bytesRead); }
+  if(bytesRead < readChunk){ buff = buff.slice(0, bytesRead); }
 
   //Get the line end
   var index = buff.indexOf(endl);
 
   //Slice the buffer
-  //buff = (index !== -1) ? buff.slice(0, index) : buff;
-  buff = (index === -1) ? buff.slice(0, bytesRead) : buff.slice(0, index);
+  buff = (index !== -1) ? buff.slice(0, index) : buff;
 
   //Return the buffer
   return buff;
