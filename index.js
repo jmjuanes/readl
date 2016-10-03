@@ -1,3 +1,4 @@
+//ADD BUFFER START, END AND LENGTH
 //Import dependencies
 var fs = require('fs');
 var pstat = require('pstat');
@@ -79,25 +80,31 @@ module.exports = function(file, opt, callback)
     if(line === false){ break; }
 
     //Convert the line to utf8
-    line = line.toString(opt.encoding);
+    var line_str = line.toString(opt.encoding);
 
     //Increment the line counter
     count = count + 1;
 
-    //Increment the position
-    position = position + line.length + 1;
+    //Save the start position
+    var position_start = positon;
+
+    //Save the end position
+    var position_end = position + line.length + 1;
 
     //Check for empty line
-    if(line.replace(/\s/g, '') === '' && opt.emptyLines === false){ continue; }
+    if(line_str.replace(/\s/g, '') === '' && opt.emptyLines === false){ continue; }
 
     //Do the callback
-    var next = callback(line, count);
+    var next = callback(line_start, count, position_start, position_end, line.length);
 
     //Check the next
     if(typeof next === 'undefined'){ var next = true; }
 
     //Check for breaking the loop
     if(next === false){ break; }
+
+    //Update the position
+    position = position_end;
   }
 
   //Exit
