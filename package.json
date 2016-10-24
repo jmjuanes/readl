@@ -1,6 +1,6 @@
 {
   "name": "readl",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Read a file line-by-line",
   "keywords": [ "file", "read", "line", "line-by-line", "fs", "readline", "linebyline", "readl", "readlines" ],
   "author": "Josemi Juanes <josemijuanes@gmail.com>",
