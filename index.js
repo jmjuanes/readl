@@ -94,6 +94,9 @@ module.exports = function(file, opt, callback)
     //Save the end position
     var position_end = position + line.length + 1;
 
+    //Update the position
+    position = position_end;
+
     //Check for empty line
     if(line_str.replace(/\s/g, '') === '' && opt.emptyLines === false){ continue; }
 
@@ -105,9 +108,6 @@ module.exports = function(file, opt, callback)
 
     //Check for breaking the loop
     if(next === false){ break; }
-
-    //Update the position
-    position = position_end;
   }
 
   //Close the file
