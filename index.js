@@ -3,26 +3,20 @@
 var fs = require('fs');
 var pstat = require('pstat');
 
-//Define the default read chunk
-var readChunk = 1024;
-
-//Define the line break
-var endl = 0x0a;
-
 //Read line from file
-function readl(fd, start)
+function readl(fd, start, chunk, endl)
 {
   //Create the buffer
-  var buff = new Buffer(readChunk);
+  var buff = new Buffer(chunk);
 
   //Get the chunk
-  var bytesRead = fs.readSync(fd, buff, 0, readChunk, start);
+  var bytesRead = fs.readSync(fd, buff, 0, chunk, start);
 
   //Check the length
   if(bytesRead === 0){ return false; }
 
   //Compare with the chunk size
-  if(bytesRead < readChunk){ buff = buff.slice(0, bytesRead); }
+  if(bytesRead < chunk){ buff = buff.slice(0, bytesRead); }
 
   //Get the line end
   var index = buff.indexOf(endl);
@@ -58,6 +52,12 @@ module.exports = function(file, opt, callback)
   //Check the start option
   if(typeof opt.start === 'undefined'){ opt.start = 0; }
 
+  //Check the endline character
+  if(typeof opt.endl === 'undefined'){ opt.endl = 0x0a; }
+
+  //Check the chunk
+  if(typeof opt.chunk === 'undefined'){ opt.chunk = 1024; }
+
   //Check for no options
   if(typeof callback === 'undefined'){ return new Error('Undefined callback function'); }
 
@@ -77,7 +77,7 @@ module.exports = function(file, opt, callback)
   while(true)
   {
     //Get the line
-    var line = readl(fd, position);
+    var line = readl(fd, position, opt.chunk, opt.endl);
 
     //Check for exit
     if(line === false){ break; }
@@ -116,9 +116,3 @@ module.exports = function(file, opt, callback)
   //Exit
   return;
 };
-
-//Set the read chunk
-module.exports.setChunk = function(value){ readChunk = value; };
-
-//Set the end line character
-module.exports.setEndl = function(value){ endl = value; };
