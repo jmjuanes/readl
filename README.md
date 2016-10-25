@@ -50,6 +50,8 @@ An `object` with the following options:
 - `encoding`: set the encoding. Default: `utf8`.
 - `emptyLines`: set it to `false` if you want to omit the empty lines. Default: `true`.
 - `start`: start position. Default is 0.
+- `chunk`: set the chunk size. Default is 1024.
+- `endl`: set the end-line character. Default is `0x0a`.
 
 ##### callback
 
@@ -63,13 +65,6 @@ A `function` that will be executed one time for each read line on the file. This
 
 You can break the loop at a particular line by making the callback function return `false`.  
 
-### readl.setChunk(value)
-
-Set the default chunk size. Default is 1024.
-
-### readl.setEndl(value)
-
-Set the default end-line character. Default is `0x0a`
 
 ## Related
 
